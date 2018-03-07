@@ -11,36 +11,108 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/searchmovie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search Movie"
-            tools:layout_editor_absoluteX="121dp"
-            tools:layout_editor_absoluteY="206dp" />
-
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="231dp"
-            android:layout_height="29dp"
-            android:layout_marginBottom="8dp"
-            android:text="Welcome to MovieMatch, %user%."
-            app:layout_constraintBottom_toTopOf="@+id/editText"
+            android:id="@+id/text_welcome"
+            android:layout_width="325dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:text="Hello %user%, welcome to MovieMatch!"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.453" />
+            app:layout_constraintVertical_bias="0.096" />
 
         <EditText
-            android:id="@+id/editText"
-            android:layout_width="329dp"
+            android:id="@+id/search_movie"
+            android:layout_width="324dp"
             android:layout_height="49dp"
-            android:layout_marginBottom="88dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintBottom_toTopOf="@+id/searchmovie"
-            tools:layout_editor_absoluteX="29dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_welcome" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="324dp"
+            android:layout_height="46dp"
+            android:layout_marginBottom="308dp"
+            android:layout_marginTop="8dp"
+            android:text="Search for similar movies!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_movie"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_genre"
+            android:layout_width="116dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:hint="Select Genre"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.209"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintVertical_bias="0.026" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_year"
+            android:layout_width="116dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:hint="Select Year(s)"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.817"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintVertical_bias="0.026" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_length"
+            android:layout_width="116dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:hint="Select Length"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.817"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintVertical_bias="0.175" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_rating"
+            android:layout_width="116dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:hint="Select Rating"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintVertical_bias="0.175" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="364dp" />
+
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
