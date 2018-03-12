@@ -10,15 +10,14 @@
     <FrameLayout
         android:id="@+id/movieListFragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="279dp"
-        tools:layout_editor_absoluteY="232dp">
+        android:layout_height="match_parent">
 
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="388dp"
-        android:layout_height="229dp">
+        android:id="@+id/movieSearchFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     </FrameLayout>
 
