@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context="nl.tue.moviematch.TheaterActivity">
 
+    <FrameLayout
+        android:id="@+id/theaterSearchFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/theaterListFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

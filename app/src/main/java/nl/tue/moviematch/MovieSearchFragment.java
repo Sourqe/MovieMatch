@@ -3,70 +3,79 @@ package nl.tue.moviematch;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.support.v4.app.FragmentManager;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MovieSearchFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
 public class MovieSearchFragment extends Fragment {
-
-    private OnFragmentInteractionListener mListener;
 
     public MovieSearchFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_search2, container, false);
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+        // Create new view
+        View v = inflater.inflate(R.layout.fragment_movie_search, container, false);
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+        // String arrays containing the dropdown menu items
+        String[] SPINNERLISTGENRE = {"HORROR", "DRAMA", "ROMANCE", "ACTION", "COMEDY", "ALL"};
+        String[] SPINNERLISTYEAR = {"1990s", "1980s", "1970s", "2000s", "2010s", "ALL"};
+        String[] SPINNERLISTLENGTH = {"< 60 min", "< 120 min", "< 180 min", "> 180 min", "ALL"};
+        String[] SPINNERLISTRATING = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "ALL"};
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+        // One dropdown menu
+        // Initialize spinner and connect it with spinner id
+        MaterialBetterSpinner betterSpinnerGenre = (MaterialBetterSpinner) v.findViewById(R.id.android_material_design_spinner_genre);
+        // Initialize arrayAdapter and put the elements of the string arrays in their respective array
+        ArrayAdapter<String> adapterGenre = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTGENRE);
+        // Dropdown box with one item per line
+        adapterGenre.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        // Connect both
+        betterSpinnerGenre.setAdapter(adapterGenre);
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        MaterialBetterSpinner betterSpinnerYear = (MaterialBetterSpinner) v.findViewById(R.id.android_material_design_spinner_year);
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTYEAR);
+        adapterYear.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        betterSpinnerYear.setAdapter(adapterYear);
+
+        MaterialBetterSpinner betterSpinnerLength = (MaterialBetterSpinner) v.findViewById(R.id.android_material_design_spinner_length);
+        ArrayAdapter<String> adapterLength = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTLENGTH);
+        adapterLength.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        betterSpinnerLength.setAdapter(adapterLength);
+
+        MaterialBetterSpinner betterSpinnerRating = (MaterialBetterSpinner) v.findViewById(R.id.android_material_design_spinner_rating);
+        ArrayAdapter<String> adapterRating = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTRATING);
+        adapterRating.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        betterSpinnerRating.setAdapter(adapterRating);
+
+        Button button = (Button) v.findViewById(R.id.search_movie);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                MovieListFragment movieListFragment = new MovieListFragment();
+                fragmentTransaction.replace(R.id.movieListFragmentContainer, movieListFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        // Return the view
+        return v;
     }
 }

@@ -1,13 +1,110 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="nl.tue.moviematch.MovieSearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_welcome"
+            android:layout_width="325dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="16dp"
+            android:text="Hello %user%, welcome to MovieMatch!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/search_for_movie"
+            android:layout_width="324dp"
+            android:layout_height="49dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_welcome" />
+
+        <Button
+            android:id="@+id/search_movie"
+            android:layout_width="324dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="16dp"
+            android:text="Search for similar movies!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_for_movie" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_genre"
+            android:layout_width="116dp"
+            android:layout_height="44dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="24dp"
+            android:hint="Select Genre"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/android_material_design_spinner_year"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/android_material_design_spinner_rating" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_year"
+            android:layout_width="116dp"
+            android:layout_height="47dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            android:hint="Select Year(s)"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/android_material_design_spinner_genre"
+            app:layout_constraintTop_toBottomOf="@+id/android_material_design_spinner_length" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_length"
+            android:layout_width="116dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="30dp"
+            android:hint="Select Length"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/android_material_design_spinner_rating"
+            app:layout_constraintTop_toBottomOf="@+id/search_movie" />
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/android_material_design_spinner_rating"
+            android:layout_width="116dp"
+            android:layout_height="0dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="30dp"
+            android:hint="Select Rating"
+            android:textColorHint="#05AB9A"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/android_material_design_spinner_length"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_movie" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="364dp" />
+
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>
