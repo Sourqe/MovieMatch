@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/search_movie"
+            android:id="@+id/search_for_movie"
             android:layout_width="324dp"
             android:layout_height="49dp"
             android:ems="10"
@@ -33,7 +33,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_welcome" />
 
         <Button
-            android:id="@+id/search_button"
+            android:id="@+id/search_movie"
             android:layout_width="324dp"
             android:layout_height="46dp"
             android:layout_marginTop="16dp"
@@ -41,7 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_movie" />
+            app:layout_constraintTop_toBottomOf="@+id/search_for_movie" />
 
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
             android:id="@+id/android_material_design_spinner_genre"
@@ -83,7 +83,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/android_material_design_spinner_rating"
-            app:layout_constraintTop_toBottomOf="@+id/search_button" />
+            app:layout_constraintTop_toBottomOf="@+id/search_movie" />
 
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
             android:id="@+id/android_material_design_spinner_rating"
@@ -97,7 +97,7 @@
             app:layout_constraintEnd_toStartOf="@+id/android_material_design_spinner_length"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_button" />
+            app:layout_constraintTop_toBottomOf="@+id/search_movie" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"

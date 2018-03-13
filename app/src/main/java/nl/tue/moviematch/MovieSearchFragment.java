@@ -63,7 +63,7 @@ public class MovieSearchFragment extends Fragment {
         adapterRating.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         betterSpinnerRating.setAdapter(adapterRating);
 
-        Button button = (Button) v.findViewById(R.id.search_button);
+        Button button = (Button) v.findViewById(R.id.search_movie);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
