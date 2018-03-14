@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.EditText;
 
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
@@ -84,6 +85,7 @@ public class MovieSearchFragment extends Fragment {
         adapterRating.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         betterSpinnerRating.setAdapter(adapterRating);
 
+        final EditText title = (EditText) v.findViewById(R.id.search_for_movie);
         final Button button = (Button) v.findViewById(R.id.search_movie);
 
         button.setOnClickListener(new OnClickListener() {
@@ -95,11 +97,12 @@ public class MovieSearchFragment extends Fragment {
                 fragmentTransaction.replace(R.id.movieListFragmentContainer, movieListFragment);
                 fragmentTransaction.commit();
 
+                String movieTitle = title.getText().toString();
                 String genre = betterSpinnerGenre.getText().toString();
                 String year = betterSpinnerYear.getText().toString();
                 String length = betterSpinnerLength.getText().toString();
                 String rating = betterSpinnerRating.getText().toString();
-                String combined = genre + " " + year + " " + length + " " + rating;
+                String combined = movieTitle + genre + " " + year + " " + length + " " + rating;
                 mCallback.passData(combined);
             }
         });
