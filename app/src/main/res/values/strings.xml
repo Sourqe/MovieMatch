@@ -11,4 +11,10 @@
     <string name="gpsSetting">GPS</string>
     <string name="faq1">Can I watch movies using this app?</string>
     <string name="otherQuestion">Is your question not in the list, or do you want to provide us with feedback? Then send an e-mail to idontknow@imnotcreative.com</string>
+    <string name="welcome_message">Hello, welcome to MovieMatch!</string>
+    <string name="select_genre">Select Genre</string>
+    <string name="select_year_s">Select Year(s)</string>
+    <string name="select_length">Select Length</string>
+    <string name="select_rating">Select Rating</string>
+    <string name="search_for_similar_movies">Search for similar movies</string>
 </resources>

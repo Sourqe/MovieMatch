@@ -102,7 +102,7 @@ public class MovieSearchFragment extends Fragment {
                 String year = betterSpinnerYear.getText().toString();
                 String length = betterSpinnerLength.getText().toString();
                 String rating = betterSpinnerRating.getText().toString();
-                String combined = movieTitle + genre + " " + year + " " + length + " " + rating;
+                String combined = "You have chosen for a movie similar to: " + movieTitle + " with genre: " + genre + ", from years: " + year + ", with length: " + length + ", and with rating of minimal: " + rating + ".";
                 mCallback.passData(combined);
             }
         });
