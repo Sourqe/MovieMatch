@@ -18,8 +18,6 @@ public class TheaterActivity extends FragmentActivity implements TheaterSearchFr
             if (savedInstanceState != null) {
                 return;
             }
-
-            // Create a new Fragment to be placed in the activity layout
             TheaterSearchFragment tsFragment = new TheaterSearchFragment();
 
             // Add the fragment to the 'fragment_container' FrameLayout
@@ -27,11 +25,14 @@ public class TheaterActivity extends FragmentActivity implements TheaterSearchFr
                     .add(R.id.theaterSearchFragmentContainer, tsFragment).commit();
         }
     }
-
-    public void SearchClicked() {
+    @Override
+    public void passData(String name) {
         TheaterListFragment tlFragment = new TheaterListFragment();
-        // Add the fragment to the 'fragment_container' FrameLayout
+        Bundle args = new Bundle();
+        args.putString(MovieListFragment.DATA_RECEIVE, name);
+        tlFragment .setArguments(args);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.theaterListFragmentContainer, tlFragment).commit();
+                .replace(R.id.theaterListFragmentContainer, tlFragment )
+                .commit();
     }
 }
