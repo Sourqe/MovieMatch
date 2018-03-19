@@ -34,7 +34,6 @@
             android:id="@+id/button2"
             android:layout_width="173dp"
             android:layout_height="83dp"
-            android:layout_marginBottom="4dp"
             android:text="Button"
             app:layout_constraintBottom_toTopOf="@+id/button4"
             app:layout_constraintEnd_toStartOf="@+id/button"
