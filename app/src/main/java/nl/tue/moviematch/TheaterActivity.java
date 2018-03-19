@@ -2,7 +2,7 @@ package nl.tue.moviematch;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-public class TheaterActivity extends FragmentActivity {
+public class TheaterActivity extends FragmentActivity implements TheaterSearchFragment.OnSearchClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,15 +20,18 @@ public class TheaterActivity extends FragmentActivity {
             }
 
             // Create a new Fragment to be placed in the activity layout
-            TheaterSearchFragment firstFragment = new TheaterSearchFragment();
-
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
-            firstFragment.setArguments(getIntent().getExtras());
+            TheaterSearchFragment tsFragment = new TheaterSearchFragment();
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.theaterSearchFragmentContainer, firstFragment).commit();
+                    .add(R.id.theaterSearchFragmentContainer, tsFragment).commit();
         }
+    }
+
+    public void SearchClicked() {
+        TheaterListFragment tlFragment = new TheaterListFragment();
+        // Add the fragment to the 'fragment_container' FrameLayout
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.theaterListFragmentContainer, tlFragment).commit();
     }
 }
