@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.view.View;
 
 
-public class HomeActivity extends AppCompatActivity implements MovieSearchFragment.DataPassListener {
+public class HomeActivity extends MainActivity implements MovieSearchFragment.DataPassListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
