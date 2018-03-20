@@ -13,7 +13,6 @@ public class HomeActivity extends MainActivity implements MovieSearchFragment.Da
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
