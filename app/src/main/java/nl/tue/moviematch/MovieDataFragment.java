@@ -7,6 +7,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.view.View.OnClickListener;
 
 
 /**
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 public class MovieDataFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private int movieId;
 
     public MovieDataFragment() {
         // Required empty public constructor
@@ -27,8 +30,12 @@ public class MovieDataFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_movie_data, container, false);
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_data, container, false);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -40,7 +47,9 @@ public class MovieDataFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
+
         super.onAttach(context);
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
