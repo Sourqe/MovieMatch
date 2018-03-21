@@ -2,11 +2,10 @@ package nl.tue.moviematch;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-public class TheaterActivity extends FragmentActivity implements TheaterSearchFragment.OnSearchClickListener{
+public class TheaterActivity extends MainActivity implements TheaterSearchFragment.OnSearchClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_theater);
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
