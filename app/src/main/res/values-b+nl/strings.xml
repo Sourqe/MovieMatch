@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MovieMatch</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="frequently_asked_questions">Vaak gestelde vragen</string>
+    <string name="about">Over</string>
+    <string name="this_app_was_developed_for_the_purpose_of_the_dbl_app_development_course_at_the_technical_university_of_eindhoven_it_was_developed_by_the_members_of_group_22_for_the_functioning_of_this_app_information_is_retrieved_using_the_moviedb_api">Deze app is gemaakt voor het DBL App Development vak voor de Technische Universiteit Eindhoven. Het is gemaakt door groep 22. Voor de functies in de app wordt informatie opgevraagd uit de MovieDB API.</string>
+    <string name="settingsHeader">Instellingen</string>
+    <string name="gpsSetting">GPS</string>
+    <string name="faq1">Kan ik films kijken met deze app?</string>
+    <string name="otherQuestion">Staat uw vraag niet in de lijst of wilt u feedback geven? Stuur dan een e-mail naar idontknow@imnotcreative.com</string>
+    <string name="welcome_message">Hallo, welkom bij MovieMatch!</string>
+    <string name="select_genre">Genre</string>
+    <string name="select_year_s">Jaar</string>
+    <string name="select_length">Lengte</string>
+    <string name="select_rating">Score</string>
+    <string name="search_for_similar_movies">Zoeken voor soortegelijke films!</string>
+    <string name="close">Sluiten</string>
+    <string name="open">Open</string>
+    <string name="search_theater">Zoeken voor theaters!</string>
+    <string name="movie_search_hint">Laat leeg om uw eigen locatie te gebruiken</string>
+</resources>
