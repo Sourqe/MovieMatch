@@ -29,7 +29,7 @@ public class TheaterActivity extends FragmentActivity implements TheaterSearchFr
     public void passData(String name) {
         TheaterListFragment tlFragment = new TheaterListFragment();
         Bundle args = new Bundle();
-        args.putString(MovieListFragment.DATA_RECEIVE, name);
+        args.putString(TheaterListFragment.DATA_RECEIVE, name);
         tlFragment .setArguments(args);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.theaterListFragmentContainer, tlFragment )

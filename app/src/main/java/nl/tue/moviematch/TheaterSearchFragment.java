@@ -1,5 +1,6 @@
 package nl.tue.moviematch;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,22 @@ public class TheaterSearchFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try
+        {
+            mCallback = (TheaterSearchFragment.OnSearchClickListener) context;
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(context.toString()+ " must implement OnImageClickListener");
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -36,8 +53,8 @@ public class TheaterSearchFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                MovieListFragment movieListFragment = new MovieListFragment();
-                fragmentTransaction.replace(R.id.movieListFragmentContainer, movieListFragment);
+                TheaterListFragment theaterListFragment = new TheaterListFragment();
+                fragmentTransaction.replace(R.id.theaterListFragmentContainer, theaterListFragment);
                 fragmentTransaction.commit();
 
                  mCallback.passData(tName.getText().toString());
