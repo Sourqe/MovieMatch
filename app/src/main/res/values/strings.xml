@@ -19,4 +19,6 @@
     <string name="search_for_similar_movies">Search for similar movies</string>
     <string name="close">Close</string>
     <string name="open">Open</string>
+    <string name="search_theater">Search for theaters!</string>
+    <string name="movie_search_hint">Leave blank to use current location</string>
 </resources>

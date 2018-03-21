@@ -40,7 +40,7 @@ public class TheaterSearchFragment extends Fragment {
                 fragmentTransaction.replace(R.id.movieListFragmentContainer, movieListFragment);
                 fragmentTransaction.commit();
 
-                 mCallback.passData(tName.getText().toString();
+                 mCallback.passData(tName.getText().toString());
             }
         });
         return v;
