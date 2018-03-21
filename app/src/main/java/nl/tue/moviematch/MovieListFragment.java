@@ -88,7 +88,9 @@ public class MovieListFragment extends Fragment {
                     ArrayList<Integer> ids = new ArrayList<Integer>();
 
                     for( int i = 0; i < results.length(); i++){
-                        ids.add( Integer.parseInt(results.getJSONArray(i).getString( 4 ) ) );
+                        if( checkFilter() ) {
+                            ids.add(Integer.parseInt(results.getJSONArray(i).getString(4)));
+                        }
                     }
 
                     //TODO call movieDataFragments
@@ -107,6 +109,10 @@ public class MovieListFragment extends Fragment {
 
         );
 
+    }
+
+    public boolean checkFilter(){
+        return false;
     }
 
 
