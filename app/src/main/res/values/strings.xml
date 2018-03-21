@@ -13,5 +13,15 @@
     <string name="otherQuestion">Is your question not in the list, or do you want to provide us with feedback? Then send an e-mail to idontknow@imnotcreative.com</string>
 <<<<<<< HEAD
 =======
+    <string name="welcome_message">Hello, welcome to MovieMatch!</string>
+    <string name="select_genre">Select Genre</string>
+    <string name="select_year_s">Select Year(s)</string>
+    <string name="select_length">Select Length</string>
+    <string name="select_rating">Select Rating</string>
+    <string name="search_for_similar_movies">Search for similar movies</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+    <string name="search_theater">Search for theaters!</string>
+    <string name="movie_search_hint">Leave blank to use current location</string>
 >>>>>>> origin/home-activity
 </resources>

@@ -9,8 +9,10 @@
 .externalNativeBuild
 .idea/vcs.xml
 .idea/modules.xml
+app/src/main/res/values/ApiKeys.xml
 .idea/modules.xml
 <<<<<<< HEAD
 app/src/main/res/values/ApiKeys.xml
 =======
+.idea/misc.xml
 >>>>>>> origin/home-activity
