@@ -8,17 +8,43 @@
 
     <FrameLayout
         android:id="@+id/theaterSearchFragmentContainer"
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+=======
+        android:layout_width="0dp"
+        android:layout_height="178dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+>>>>>>> origin/home-activity
 
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/theaterListFragmentContainer"
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
+=======
+        android:layout_width="0dp"
+        android:layout_height="309dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+
+>>>>>>> origin/home-activity
 </android.support.constraint.ConstraintLayout>

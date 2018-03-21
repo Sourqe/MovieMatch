@@ -11,4 +11,7 @@
     <string name="gpsSetting">GPS</string>
     <string name="faq1">Can I watch movies using this app?</string>
     <string name="otherQuestion">Is your question not in the list, or do you want to provide us with feedback? Then send an e-mail to idontknow@imnotcreative.com</string>
+<<<<<<< HEAD
+=======
+>>>>>>> origin/home-activity
 </resources>
