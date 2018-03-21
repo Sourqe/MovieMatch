@@ -31,28 +31,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
-<<<<<<< HEAD
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
  */
 public class TheaterListFragment extends Fragment {
 
-=======
-
-/**
- * A simple {@link android.support.v4.app.Fragment} subclass.
- */
-public class TheaterListFragment extends Fragment {
-    final static String DATA_RECEIVE = "data_receive";
-    TextView showReceivedData;
->>>>>>> origin/home-activity
 
     public TheaterListFragment() {
         // Required empty public constructor
     }
 
-<<<<<<< HEAD
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,22 +50,4 @@ public class TheaterListFragment extends Fragment {
 
         return v;
     }
-=======
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_theater_list, container, false);
-        showReceivedData = (TextView) v.findViewById(R.id.showReceivedData);
-        return v;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Bundle args = getArguments();
-        if (args != null) {
-            showReceivedData.setText(args.getString(DATA_RECEIVE));
-        }
-    }
->>>>>>> origin/home-activity
 }

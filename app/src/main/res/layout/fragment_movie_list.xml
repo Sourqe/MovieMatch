@@ -9,91 +9,16 @@
     <!-- TODO: Update blank fragment layout -->
 
     <android.support.constraint.ConstraintLayout
-<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="281dp"
         android:layout_marginTop="376dp"
         android:maxHeight="219dp"
-=======
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="334dp"
-        android:layout_marginTop="284dp"
-        android:maxHeight="300dp"
->>>>>>> origin/home-activity
         android:minHeight="219dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<<<<<<< HEAD
-=======
-        <TextView
-            android:id="@+id/showReceivedData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.464"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.238" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="189dp"
-            android:layout_height="82dp"
-            android:layout_marginBottom="52dp"
-            android:text="Movie 4"
-            app:layout_constraintBottom_toTopOf="@+id/button5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button4" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="173dp"
-            android:layout_height="83dp"
-            android:text="Movie 1"
-            app:layout_constraintBottom_toTopOf="@+id/button4"
-            app:layout_constraintEnd_toStartOf="@+id/button"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="309dp"
-            android:layout_height="37dp"
-            android:text="Load more movies"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="186dp"
-            android:layout_height="82dp"
-            android:text="Movie 2"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button2" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="176dp"
-            android:layout_height="82dp"
-            android:layout_marginBottom="52dp"
-            android:text="Movie 3"
-            app:layout_constraintBottom_toTopOf="@+id/button5"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
->>>>>>> origin/home-activity
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

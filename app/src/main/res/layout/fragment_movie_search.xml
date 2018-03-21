@@ -16,12 +16,7 @@
             android:layout_width="325dp"
             android:layout_height="26dp"
             android:layout_marginTop="16dp"
-<<<<<<< HEAD
             android:text="Hello %user%, welcome to MovieMatch!"
-=======
-            android:text="@string/welcome_message"
-            android:textSize="16sp"
->>>>>>> origin/home-activity
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,10 +28,6 @@
             android:layout_height="49dp"
             android:ems="10"
             android:inputType="textPersonName"
-<<<<<<< HEAD
-=======
-            android:textSize="14sp"
->>>>>>> origin/home-activity
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_welcome" />
@@ -46,27 +37,18 @@
             android:layout_width="324dp"
             android:layout_height="46dp"
             android:layout_marginTop="16dp"
-<<<<<<< HEAD
             android:text="Search for similar movies!"
-=======
-            android:text="@string/search_for_similar_movies"
->>>>>>> origin/home-activity
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_for_movie" />
 
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-<<<<<<< HEAD
             android:id="@+id/android_material_design_spinner_genre"
-=======
-            android:id="@+id/spinner_genre"
->>>>>>> origin/home-activity
             android:layout_width="116dp"
             android:layout_height="44dp"
             android:layout_alignParentStart="true"
             android:layout_marginTop="24dp"
-<<<<<<< HEAD
             android:hint="Select Genre"
             android:textColorHint="#05AB9A"
             android:textSize="14sp"
@@ -77,32 +59,15 @@
 
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
             android:id="@+id/android_material_design_spinner_year"
-=======
-            android:hint="@string/select_genre"
-            android:textColorHint="#05AB9A"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_year"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_rating" />
-
-        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-            android:id="@+id/spinner_year"
->>>>>>> origin/home-activity
             android:layout_width="116dp"
             android:layout_height="47dp"
             android:layout_alignParentStart="true"
             android:layout_marginTop="16dp"
-<<<<<<< HEAD
             android:hint="Select Year(s)"
-=======
-            android:hint="@string/select_year_s"
->>>>>>> origin/home-activity
             android:textColorHint="#05AB9A"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-<<<<<<< HEAD
             app:layout_constraintStart_toEndOf="@+id/android_material_design_spinner_genre"
             app:layout_constraintTop_toBottomOf="@+id/android_material_design_spinner_length" />
 
@@ -113,23 +78,10 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="30dp"
             android:hint="Select Length"
-=======
-            app:layout_constraintStart_toEndOf="@+id/spinner_genre"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_length" />
-
-        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-            android:id="@+id/spinner_length"
-            android:layout_width="116dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="12dp"
-            android:hint="@string/select_length"
->>>>>>> origin/home-activity
             android:textColorHint="#05AB9A"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-<<<<<<< HEAD
             app:layout_constraintStart_toEndOf="@+id/android_material_design_spinner_rating"
             app:layout_constraintTop_toBottomOf="@+id/search_movie" />
 
@@ -143,21 +95,6 @@
             android:textColorHint="#05AB9A"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/android_material_design_spinner_length"
-=======
-            app:layout_constraintStart_toEndOf="@+id/spinner_rating"
-            app:layout_constraintTop_toBottomOf="@+id/search_movie" />
-
-        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-            android:id="@+id/spinner_rating"
-            android:layout_width="116dp"
-            android:layout_height="0dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="12dp"
-            android:hint="@string/select_rating"
-            android:textColorHint="#05AB9A"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_length"
->>>>>>> origin/home-activity
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_movie" />

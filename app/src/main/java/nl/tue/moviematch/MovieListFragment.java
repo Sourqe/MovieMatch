@@ -1,16 +1,12 @@
 package nl.tue.moviematch;
 
 
-<<<<<<< HEAD
 import android.content.res.Resources;
-=======
->>>>>>> origin/home-activity
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewDebug;
 import android.view.ViewGroup;
-<<<<<<< HEAD
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
@@ -27,16 +23,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-=======
-import android.support.v4.app.Fragment;
-import android.widget.TextView;
->>>>>>> origin/home-activity
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MovieListFragment extends Fragment {
-<<<<<<< HEAD
 
     private String genreFilter = "";
     private String yearFilter = "";
@@ -44,10 +35,6 @@ public class MovieListFragment extends Fragment {
     private String ratingFilter = "";
     private int movieId = 0;
     private int currentPage = 1;
-=======
-    final static String DATA_RECEIVE = "data_receive";
-    TextView showReceivedData;
->>>>>>> origin/home-activity
 
     public MovieListFragment() {
         // Required empty public constructor
@@ -83,7 +70,6 @@ public class MovieListFragment extends Fragment {
             }
         );
 
-<<<<<<< HEAD
     }
 
     public void findSimilar(int id, int page){
@@ -146,22 +132,4 @@ public class MovieListFragment extends Fragment {
 
         return v;
     }
-=======
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_movie_list, container, false);
-        showReceivedData = (TextView) v.findViewById(R.id.showReceivedData);
-        return v;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Bundle args = getArguments();
-        if (args != null) {
-            showReceivedData.setText(args.getString(DATA_RECEIVE));
-        }
-    }
->>>>>>> origin/home-activity
 }
