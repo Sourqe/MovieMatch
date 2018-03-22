@@ -17,6 +17,6 @@
     <string name="search_for_similar_movies">Zoeken voor soortegelijke films!</string>
     <string name="close">Sluiten</string>
     <string name="open">Open</string>
-    <string name="search_theater">Zoeken voor theaters!</string>
+    <string name="search_theater">Zoeken voor theaters</string>
     <string name="movie_search_hint">Laat leeg om uw eigen locatie te gebruiken</string>
 </resources>
