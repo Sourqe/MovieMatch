@@ -12,25 +12,31 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle mToggle;
-    Toolbar mToolbar;
-    NavigationView navigationView;
+    // Global variables
+    DrawerLayout drawerLayout; // represents the drawerLayout
+    ActionBarDrawerToggle mToggle; // toggler for the actionBar
+    Toolbar mToolbar; // the toolbar
+    NavigationView navigationView; // the navigation view
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set the content view
         setContentView(R.layout.activity_main);
 
+        // Set the toolbar
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // Set the drawerLayout
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
 
+        // Add a drawerListener with the toggle to the drawerLayout
         drawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
+        // Set the navigation view
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -48,10 +54,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        // Get the id
         int id = item.getItemId();
+        // Creating intents for the different items in the drawerLayout
         switch (id) {
+            // When clicked on the Home label
             case R.id.nav_home:
+                // Create a new intent for the HomeActivity
                 Intent h = new Intent(MainActivity.this, HomeActivity.class);
+                // Start the HomeActivity
                 startActivity(h);
                 break;
             case R.id.nav_theater:
@@ -70,8 +81,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(t);
                 break;
         }
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
