@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 
 
@@ -12,6 +13,8 @@ public class HomeActivity extends MainActivity implements MovieSearchFragment.Da
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES);
         super.onCreate(savedInstanceState);
 
         // Check that the activity is using the layout version with
