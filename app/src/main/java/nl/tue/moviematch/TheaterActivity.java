@@ -22,8 +22,12 @@ public class TheaterActivity extends MainActivity implements TheaterSearchFragme
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.theaterSearchFragmentContainer, tsFragment).commit();
+
         }
+
+
     }
+
     @Override
     public void passData(String name) {
         TheaterListFragment tlFragment = new TheaterListFragment();
