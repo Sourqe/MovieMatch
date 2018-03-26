@@ -25,13 +25,14 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
 
         final Switch nSwitch = (Switch) v.findViewById(R.id.switch3);
+
+
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+            nSwitch.setChecked (true);
+        }
+
         if (nSwitch != null) {
             nSwitch.setOnCheckedChangeListener(this);
-        }
-        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
-            nSwitch.setOnCheckedChangeListener (null);
-            nSwitch.setChecked (true);
-            nSwitch.setOnCheckedChangeListener (this);
         }
         return v;
     }
