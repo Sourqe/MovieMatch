@@ -29,7 +29,9 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
             nSwitch.setOnCheckedChangeListener(this);
         }
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
-            nSwitch.setChecked(true);
+            nSwitch.setOnCheckedChangeListener (null);
+            nSwitch.setChecked (true);
+            nSwitch.setOnCheckedChangeListener (this);
         }
         return v;
     }
