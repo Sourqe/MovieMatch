@@ -7,39 +7,32 @@
     android:id="@+id/about_layout"
     tools:context="nl.tue.moviematch.AboutActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/aboutHeader"
-        android:layout_width="105dp"
-        android:layout_height="49dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:singleLine="false"
-        android:text="@string/about"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="25sp"
+        android:text="@string/aboutHeader"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/aboutText"
-        android:layout_width="333dp"
-        android:layout_height="249dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="318dp"
+        android:layout_height="281dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="@string/this_app_was_developed_for_the_purpose_of_the_dbl_app_development_course_at_the_technical_university_of_eindhoven_it_was_developed_by_the_members_of_group_22_for_the_functioning_of_this_app_information_is_retrieved_using_the_moviedb_api"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="176dp"
+        android:text="@string/aboutText"
+        android:textColor="@color/primaryText"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aboutHeader"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

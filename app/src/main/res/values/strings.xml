@@ -4,13 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textview">TextView</string>
-    <string name="frequently_asked_questions">Frequently Asked Questions</string>
     <string name="about">About</string>
-    <string name="this_app_was_developed_for_the_purpose_of_the_dbl_app_development_course_at_the_technical_university_of_eindhoven_it_was_developed_by_the_members_of_group_22_for_the_functioning_of_this_app_information_is_retrieved_using_the_moviedb_api">This app was developed for the purpose of the DBL App Development course at the Technical University of Eindhoven. It was developed by the members of group 22. For the functioning of this app information is retrieved using the MovieDB API.</string>
     <string name="settingsHeader">Settings</string>
-    <string name="gpsSetting">GPS</string>
-    <string name="faq1">Can I watch movies using this app?</string>
-    <string name="otherQuestion">Is your question not in the list, or do you want to provide us with feedback? Then send an e-mail to idontknow@imnotcreative.com</string>
     <string name="welcome_message">Hello, welcome to MovieMatch!</string>
     <string name="select_genre">Select Genre</string>
     <string name="select_year_s">Select Year(s)</string>
@@ -21,4 +16,18 @@
     <string name="open">Open</string>
     <string name="search_theater">Search for theaters</string>
     <string name="movie_search_hint">Leave blank to use current location</string>
+    <string name="faq">Frequently Asked Questions</string>
+    <string name="moreQuestions">Is your question not in the list, or would you like to provide us with feedback? Then you can reach us at the e-mail address idont@know.com.</string>
+    <string name="faq3_a">Yes. Visit the \'settings\' page and change the scheme to dark-mode.</string>
+    <string name="faq2_a">No, contact them yourself.</string>
+    <string name="faq3_q">Can I change the colors of the app?</string>
+    <string name="faq2_q">Can I buy tickets for the movie theater with this app?</string>
+    <string name="faq1_a">You cannot. This app is not a streaming service.</string>
+    <string name="faq1_q">How can I watch series/movies using this app?</string>
+    <string name="helpHeader"><u>Help</u></string>
+    <string name="aboutText">This app was developed for the purpose of the DBL App Development course at the Technical University of Eindhoven. It was developed by the members of group 22. For the functioning of this app information is retrieved using the MovieDB API.</string>
+    <string name="aboutHeader">About</string>
+    <string name="nightMode">Night Mode</string>
+    <string name="gps">GPS</string>
+    <string name="settings">Settings</string>
 </resources>
