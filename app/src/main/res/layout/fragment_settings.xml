@@ -10,43 +10,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Switch
-            android:id="@+id/switch3"
-            android:layout_width="313dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="36dp"
-            android:text="Enable Night Mode"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsHeader" />
-
-        <EditText
+        <TextView
             android:id="@+id/settingsHeader"
-            android:layout_width="105dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="28dp"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="textPersonName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
             android:text="@string/settingsHeader"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/primaryText"
+            android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Switch
-            android:id="@+id/switch2"
-            android:layout_width="313dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:text="Enable GPS"
-            android:textSize="20sp"
+        <TextView
+            android:id="@+id/gps"
+            android:layout_width="330dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="84dp"
+            android:text="@string/gps"
+            android:textAlignment="textStart"
+            android:textColor="@color/primaryText"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch3" />
+            app:layout_constraintTop_toBottomOf="@+id/settingsHeader" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/nightMode"
+            android:textColor="@color/primaryText"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gps" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="84dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.729"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingsHeader" />
+
+        <Switch
+            android:id="@+id/switch4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="144dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.729"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingsHeader" />
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
