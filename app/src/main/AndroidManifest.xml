@@ -15,18 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity">
+        <activity
+            android:name=".HomeActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".HelpActivity" />
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTask"
             android:exported="true" />
 
         <meta-data
@@ -35,6 +40,7 @@
 
         <activity
             android:name=".MapsActivity"
+            android:launchMode="singleTask"
             android:label="@string/title_activity_maps"></activity>
     </application>
 
