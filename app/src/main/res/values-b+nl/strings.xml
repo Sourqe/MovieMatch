@@ -2,21 +2,32 @@
     <string name="app_name">MovieMatch</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="frequently_asked_questions">Vaak gestelde vragen</string>
     <string name="about">Over</string>
-    <string name="this_app_was_developed_for_the_purpose_of_the_dbl_app_development_course_at_the_technical_university_of_eindhoven_it_was_developed_by_the_members_of_group_22_for_the_functioning_of_this_app_information_is_retrieved_using_the_moviedb_api">Deze app is gemaakt voor het DBL App Development vak voor de Technische Universiteit Eindhoven. Het is gemaakt door groep 22. Voor de functies in de app wordt informatie opgevraagd uit de MovieDB API.</string>
     <string name="settingsHeader">Instellingen</string>
-    <string name="gpsSetting">GPS</string>
-    <string name="faq1">Kan ik films kijken met deze app?</string>
-    <string name="otherQuestion">Staat uw vraag niet in de lijst of wilt u feedback geven? Stuur dan een e-mail naar idontknow@imnotcreative.com</string>
     <string name="welcome_message">Hallo, welkom bij MovieMatch!</string>
-    <string name="select_genre">Genre</string>
-    <string name="select_year_s">Jaar</string>
-    <string name="select_length">Lengte</string>
-    <string name="select_rating">Score</string>
-    <string name="search_for_similar_movies">Zoeken voor soortegelijke films!</string>
+    <string name="select_genre">Kies Genre</string>
+    <string name="select_year_s">Kies Jaar</string>
+    <string name="select_length">Kies Lengte</string>
+    <string name="select_rating">Kies Score</string>
+    <string name="search_for_similar_movies">Zoek voor overeenkomende films!</string>
     <string name="close">Sluiten</string>
-    <string name="open">Open</string>
-    <string name="search_theater">Zoeken voor theaters</string>
-    <string name="movie_search_hint">Laat leeg om uw eigen locatie te gebruiken</string>
+    <string name="open">Openen</string>
+    <string name="search_theater">Zoek voor bioscopen</string>
+    <string name="movie_search_hint">Laat leeg om je eigen locatie te gebruiken</string>
+    <string name="faq">Vaak gestelde vragen!</string>
+    <string name="moreQuestions">Staat uw vraag niet in de lijst of wilt u graag feedback geven? Mail dan naar ons e-mail address: idont@know.com</string>
+    <string name="faq3_a">Ja, ga naar de instellingen pagina en zet donkere modus aan.</string>
+    <string name="faq2_a">Nee, u zult zelf contact moeten opnemen.</string>
+    <string name="faq3_q">Kan ik de kleuren aanpassen?</string>
+    <string name="faq2_q">Kan ik kaartjes bestellen met deze app?</string>
+    <string name="faq1_a">Dat is niet mogelijk. Dit is geen streaming service.</string>
+    <string name="faq1_q">Hoe kan ik films/series kijken met deze app?</string>
+    <string name="helpHeader"><u>Help</u></string>
+    <string name="aboutText"> Deze app is gemaakt voor het DBL App Development op de Technische Universiteit te Eindhoven. De app is ontworpen door groep 22. Voor het functioneren van de app is de MovieDB API, Google Map API en Google Places API gebruikt.</string>
+    <string name="aboutHeader">Over</string>
+    <string name="nightMode">Donkere modus</string>
+    <string name="gps">GPS</string>
+    <string name="settings">Instellingen</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="search">Zoeken</string>
 </resources>

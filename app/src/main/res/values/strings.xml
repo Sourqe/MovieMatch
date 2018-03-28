@@ -2,8 +2,6 @@
     <string name="app_name">MovieMatch</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="textview">TextView</string>
     <string name="about">About</string>
     <string name="settingsHeader">Settings</string>
     <string name="welcome_message">Hello, welcome to MovieMatch!</string>

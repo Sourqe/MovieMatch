@@ -35,7 +35,7 @@
             android:layout_toEndOf="@+id/TF_location"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="Search" />
+            android:text="@string/search" />
     </LinearLayout>
 
     <fragment
