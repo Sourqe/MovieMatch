@@ -9,10 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.PlaceDetectionClient;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Global variables
+    protected GeoDataClient mGeoDataClient;
     DrawerLayout drawerLayout; // represents the drawerLayout
     ActionBarDrawerToggle mToggle; // toggler for the actionBar
     Toolbar mToolbar; // the toolbar
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mGeoDataClient = Places.getGeoDataClient(this, null);
     }
 
     @Override
