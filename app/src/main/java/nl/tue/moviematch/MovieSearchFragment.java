@@ -85,28 +85,39 @@ public class MovieSearchFragment extends Fragment {
         adapterRating.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         betterSpinnerRating.setAdapter(adapterRating);
 
+        // retrieve the title that the user put in
         final EditText title = (EditText) v.findViewById(R.id.search_for_movie);
+        // retrieve the button for searching
         final Button button = (Button) v.findViewById(R.id.search_movie);
 
+        // when pressing on the search button
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                // open a new fragment
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 MovieListFragment movieListFragment = new MovieListFragment();
+                // open the movieListFragment
                 fragmentTransaction.replace(R.id.movieListFragmentContainer, movieListFragment);
                 fragmentTransaction.commit();
 
+                // set the movieTitle equal to the user input
                 String movieTitle = title.getText().toString();
+                // set the genre equal to the value in the spinner
                 String genre = betterSpinnerGenre.getText().toString();
+                // set the year equal to the value in the spinner
                 String year = betterSpinnerYear.getText().toString();
+                // set the length equal to the value in the spinner
                 String length = betterSpinnerLength.getText().toString();
+                // set the rating equal to the value in the spinner
                 String rating = betterSpinnerRating.getText().toString();
+                // create a combined variable to pass all the information in
                 String combined = "You have chosen for a movie similar to: " + movieTitle + " with genre: " + genre + ", from years: " + year + ", with length: " + length + ", and with rating of minimal: " + rating + ".";
+                // pass the data contained in combined
                 mCallback.passData(combined);
             }
         });
-
         // Return the view
         return v;
     }
