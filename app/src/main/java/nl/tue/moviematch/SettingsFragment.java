@@ -24,7 +24,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        final Switch nSwitch = (Switch) v.findViewById(R.id.switch3);
+        final Switch nSwitch = (Switch) v.findViewById(R.id.night_mode_switch);
 
 
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
