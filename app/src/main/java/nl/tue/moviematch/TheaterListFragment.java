@@ -69,7 +69,6 @@ public class TheaterListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_movie_list, container, false);
-
         return v;
     }
 }
