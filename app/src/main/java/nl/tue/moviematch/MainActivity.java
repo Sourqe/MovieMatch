@@ -40,11 +40,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Get the suppport action bar and enable it
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // When an item is selected and the menu is toggled
         if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -81,8 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(t);
                 break;
         }
-
+        // Set the drawerLayout to drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        // Close the drawer
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

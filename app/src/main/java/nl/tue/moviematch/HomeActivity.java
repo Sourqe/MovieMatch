@@ -35,10 +35,14 @@ public class HomeActivity extends MainActivity implements MovieSearchFragment.Da
 
     @Override
     public void passData(String data) {
+        // Pass the data from the fragment to this activity
         MovieListFragment fragmentB = new MovieListFragment ();
+        // Create a bundle and put all the arguments in the bundle
         Bundle args = new Bundle();
         args.putString(MovieListFragment.DATA_RECEIVE, data);
+        // Set the arguments
         fragmentB .setArguments(args);
+        // Begin the transaction
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.movieListFragmentContainer, fragmentB )
                 .commit();
