@@ -13,7 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SettingsFragment extends Fragment implements CompoundButton.OnCheckedChangeListener  {
+public class SettingsFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
 
     public SettingsFragment() {
         // Required empty public constructor

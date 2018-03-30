@@ -28,6 +28,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -42,14 +44,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // Declare global variables
     private GoogleMap mMap; // the google map that is being used
     GoogleApiClient mGoogleApiClient; // the google api client
-    Location mLastLocation; // the most recent location
-    Marker mCurrLocationMarker; // the location of the current marker
-    LocationRequest mLocationRequest; // the location of the request
-    int PROXIMITY_RADIUS = 10000; // the max. radius to use when looking for places
-    double latitude, longitude; // the latitude and longitude of a location
-    double end_latitude, end_longitude; // the new latitude and longitude of a location
-    Marker originalMarker; // the location of the original marker
-    LatLng originalLoc; // the original location
+    private Location mLastLocation; // the most recent location
+    private Marker mCurrLocationMarker; // the marker of the current location
+    private LatLng mOriginalMarker; // the location of the original current location marker
+    private LocationRequest mLocationRequest; // the location of the request
+    private int PROXIMITY_RADIUS = 10000; // the max. radius to use when looking for places
+    private double latitude, longitude; // the latitude and longitude of a location
+    private double end_latitude, end_longitude; // the new latitude and longitude of a location
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +179,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             // get the address for the original place
                             Address myAddress = addressList.get(i);
                             // get the latLng of the location
-                            LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                            LatLng latLng = new LatLng(myAddress.getLatitude(),
+                                    myAddress.getLongitude());
                             // set the location of the marker to the latLng
                             markerOptions.position(latLng);
                             // move the camera to that place
@@ -206,7 +208,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             dataTransfer[1] = url;
 
                             getNearbyPlacesData.execute(dataTransfer);
-                            Toast.makeText(MapsActivity.this, "Showing Movie Theaters near: "+location, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MapsActivity.this, "Showing Movie " +
+                                    "Theaters near: "+location, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -220,22 +223,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     dataTransfer[1] = url;
 
                     getNearbyPlacesData.execute(dataTransfer);
-                    Toast.makeText(MapsActivity.this, "Showing Nearby Movie Theaters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsActivity.this, "Showing Nearby " +
+                            "Movie Theaters", Toast.LENGTH_SHORT).show();
                     break;
                 }
             }
             break;
             case R.id.B_navigate:
-                // same process as above but now for navigating,
-                // so we add the end lat and end long, plus we execute the directionsData
-                dataTransfer = new Object[3];
-                String url = getDirectionsUrl();
-                GetDirectionsData getDirectionsData = new GetDirectionsData();
-                dataTransfer[0] = mMap;
-                dataTransfer[1] = url;
-                dataTransfer[2] = new LatLng(end_latitude, end_longitude);
-                getDirectionsData.execute(dataTransfer);
-                break;
+                // get the location of the current position
+                LatLng currentPosition = mCurrLocationMarker.getPosition();
+                Log.d("location", currentPosition.toString());
+                Log.d("location", mOriginalMarker.toString());
+                // check if the current location is equivalent to the original location
+                if (currentPosition.equals(mOriginalMarker)) {
+                    // inform the user that they first have to move the current pos. marker
+                    Toast.makeText(MapsActivity.this, "Move the current location " +
+                            "marker first before navigating somewhere", Toast.LENGTH_SHORT).show();
+                    break;
+                } else {
+                    // if the user has moved the current position marker,
+                    // then we can execute the data transfer
+                    // basically, the same process as above but now for navigating
+                    Log.d("location", "entered if statement");
+                    dataTransfer = new Object[3];
+                    String url = getDirectionsUrl();
+                    GetDirectionsData getDirectionsData = new GetDirectionsData();
+                    // store the polylines in a list to remove them after
+                    List<Polyline> polylines = getDirectionsData.getPolylines();
+                    // remove all polylines from the map
+                    for (Polyline polyline : polylines) {
+                        // remove a polyline
+                        polyline.remove();
+                    }
+                    // clear the list
+                    polylines.clear();
+                    dataTransfer[0] = mMap;
+                    dataTransfer[1] = url;
+                    dataTransfer[2] = new LatLng(end_latitude, end_longitude);
+                    getDirectionsData.execute(dataTransfer);
+                    break;
+                }
         }
     }
 
@@ -285,7 +312,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             // retrieve the location
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,
+                    mLocationRequest, this);
         }
     }
 
@@ -311,8 +339,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // set the latLng using the latitude and longitude of the location
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        // set the original location
-        originalLoc = latLng;
         // set all the marker options
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
@@ -320,6 +346,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions.title("Current Position");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         // add the marker to the map
+        mOriginalMarker = latLng;
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         //move map camera
@@ -327,11 +354,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
         // display some text to inform the user
-        Toast.makeText(MapsActivity.this,"Your Current Location", Toast.LENGTH_LONG).show();
+        Toast.makeText(MapsActivity.this,"Your Current Location",
+                Toast.LENGTH_LONG).show();
 
         // stop location updates
         if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,
+                    this);
             Log.d("onLocationChanged", "Removing Location Updates");
         }
 
@@ -398,7 +427,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 } else {
                     // Permission denied, Disable the functionality that depends on this permission.
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Permission denied",
+                            Toast.LENGTH_LONG).show();
                 }
                 return;
             }

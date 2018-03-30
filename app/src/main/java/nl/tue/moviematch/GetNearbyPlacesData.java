@@ -70,15 +70,14 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             // set all the marker related things
             markerOptions.position(latLng);
             markerOptions.title(placeName + " : " + vicinity);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker
+                    (BitmapDescriptorFactory.HUE_BLUE));
             // add the marker to the map with its options
             mMap.addMarker(markerOptions);
             // move the camera to the new marker
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             // zoom to the location
             mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-
-
         }
 
 

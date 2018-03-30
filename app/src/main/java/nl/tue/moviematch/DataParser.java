@@ -17,9 +17,11 @@ class DataParser {
 
         try {
             // set the duration
-            duration = googleDirectionsJson.getJSONObject(0).getJSONObject("duration").getString("text");
+            duration = googleDirectionsJson.getJSONObject(0).getJSONObject("duration")
+                    .getString("text");
             // set the distance
-            distance = googleDirectionsJson.getJSONObject(0).getJSONObject("distance").getString("text");
+            distance = googleDirectionsJson.getJSONObject(0).getJSONObject("distance")
+                    .getString("text");
             // put the duration and distance in the map
             googleDirectionsMap.put("duration" , duration);
             googleDirectionsMap.put("distance", distance);
@@ -52,8 +54,10 @@ class DataParser {
                 vicinity = googlePlaceJson.getString("vicinity");
             }
             // retrieve the latitude and longitude of a location
-            latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
-            longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
+            latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location")
+                    .getString("lat");
+            longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location")
+                    .getString("lng");
             // retrieve the reference
             reference = googlePlaceJson.getString("reference");
             // put all the above retrieved information in the map
@@ -121,7 +125,8 @@ class DataParser {
             // initiate object
             jsonObject = new JSONObject(jsonData);
             // set the array
-            jsonArray = jsonObject.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(0).getJSONArray("steps");
+            jsonArray = jsonObject.getJSONArray("routes").getJSONObject(0).
+                    getJSONArray("legs").getJSONObject(0).getJSONArray("steps");
         } catch (JSONException e) { // if we cannot do the actions above
             e.printStackTrace();
         }

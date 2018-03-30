@@ -43,7 +43,8 @@ public class MovieSearchFragment extends Fragment {
         }
         catch (ClassCastException e)
         {
-            throw new ClassCastException(context.toString()+ " must implement OnImageClickListener");
+            throw new ClassCastException(context.toString()+ " must implement " +
+                    "OnImageClickListener");
         }
     }
 
@@ -62,26 +63,35 @@ public class MovieSearchFragment extends Fragment {
 
         // One dropdown menu
         // Initialize spinner and connect it with spinner id
-        final MaterialBetterSpinner betterSpinnerGenre = (MaterialBetterSpinner) v.findViewById(R.id.spinner_genre);
-        // Initialize arrayAdapter and put the elements of the string arrays in their respective array
-        ArrayAdapter<String> adapterGenre = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTGENRE);
+        final MaterialBetterSpinner betterSpinnerGenre = (MaterialBetterSpinner)
+                v.findViewById(R.id.spinner_genre);
+        // Initialize arrayAdapter and put the elements of the string arrays in
+        // their respective array
+        ArrayAdapter<String> adapterGenre = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_dropdown_item_1line, SPINNERLISTGENRE);
         // Dropdown box with one item per line
         adapterGenre.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         // Connect both
         betterSpinnerGenre.setAdapter(adapterGenre);
 
-        final MaterialBetterSpinner betterSpinnerYear = (MaterialBetterSpinner) v.findViewById(R.id.spinner_year);
-        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTYEAR);
+        final MaterialBetterSpinner betterSpinnerYear = (MaterialBetterSpinner)
+                v.findViewById(R.id.spinner_year);
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_dropdown_item_1line, SPINNERLISTYEAR);
         adapterYear.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         betterSpinnerYear.setAdapter(adapterYear);
 
-        final MaterialBetterSpinner betterSpinnerLength = (MaterialBetterSpinner) v.findViewById(R.id.spinner_length);
-        ArrayAdapter<String> adapterLength = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTLENGTH);
+        final MaterialBetterSpinner betterSpinnerLength = (MaterialBetterSpinner)
+                v.findViewById(R.id.spinner_length);
+        ArrayAdapter<String> adapterLength = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_dropdown_item_1line, SPINNERLISTLENGTH);
         adapterLength.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         betterSpinnerLength.setAdapter(adapterLength);
 
-        final MaterialBetterSpinner betterSpinnerRating = (MaterialBetterSpinner) v.findViewById(R.id.spinner_rating);
-        ArrayAdapter<String> adapterRating = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLISTRATING);
+        final MaterialBetterSpinner betterSpinnerRating = (MaterialBetterSpinner)
+                v.findViewById(R.id.spinner_rating);
+        ArrayAdapter<String> adapterRating = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_dropdown_item_1line, SPINNERLISTRATING);
         adapterRating.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         betterSpinnerRating.setAdapter(adapterRating);
 
@@ -113,7 +123,9 @@ public class MovieSearchFragment extends Fragment {
                 // set the rating equal to the value in the spinner
                 String rating = betterSpinnerRating.getText().toString();
                 // create a combined variable to pass all the information in
-                String combined = "You have chosen for a movie similar to: " + movieTitle + " with genre: " + genre + ", from years: " + year + ", with length: " + length + ", and with rating of minimal: " + rating + ".";
+                String combined = "You have chosen for a movie similar to: " + movieTitle +
+                        " with genre: " + genre + ", from years: " + year + ", with length: " +
+                        length + ", and with rating of minimal: " + rating + ".";
                 // pass the data contained in combined
                 mCallback.passData(combined);
             }
