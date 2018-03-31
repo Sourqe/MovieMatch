@@ -76,7 +76,7 @@ public class GetDirectionsData extends AsyncTask<Object,String,String> {
     }
 
     public List<Polyline> getPolylines() {
-        // method to get the list Polylines
+        // method to get the list polylines
         return this.polylines;
     }
 }

@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -57,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         // set the content of the activity
         setContentView(R.layout.activity_maps);
+
         // if our version is high enough, ask permission first
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
@@ -248,15 +250,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     dataTransfer = new Object[3];
                     String url = getDirectionsUrl();
                     GetDirectionsData getDirectionsData = new GetDirectionsData();
-                    // store the polylines in a list to remove them after
-                    List<Polyline> polylines = getDirectionsData.getPolylines();
-                    // remove all polylines from the map
-                    for (Polyline polyline : polylines) {
-                        // remove a polyline
-                        polyline.remove();
-                    }
-                    // clear the list
-                    polylines.clear();
                     dataTransfer[0] = mMap;
                     dataTransfer[1] = url;
                     dataTransfer[2] = new LatLng(end_latitude, end_longitude);
