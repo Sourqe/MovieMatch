@@ -9,20 +9,26 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.GoogleMap;
@@ -36,6 +42,8 @@ import com.google.android.gms.maps.model.Polyline;
 
 import java.io.IOException;
 import java.util.List;
+
+import static android.os.SystemClock.sleep;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -52,10 +60,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker mCurrLocationMarker; // the marker of the current location
     private LatLng mOriginalMarker; // the location of the original current location marker
     private LocationRequest mLocationRequest; // the location of the request
-    private int PROXIMITY_RADIUS = 10000; // the max. radius to use when looking for places
+    private int PROXIMITY_RADIUS = 10000; // the radius used when looking for places
+    private double orLatitude, orLongitude; // the original latitude and longitude of current loc.
     private double latitude, longitude; // the latitude and longitude of a location
     private double end_latitude, end_longitude; // the new latitude and longitude of a location
-    boolean doubleBackToExitPressedOnce = false;
+    boolean doubleClick = false; // check if we have a double click
+    MarkerOptions markerOptionsCurrent; // the marker options we are using
+    LatLng originalLatLng; // original location of the current position
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,16 +81,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Check if Google Play Services is available or not
         if (!CheckGooglePlayServices()) {
-            Log.d("onCreate", "Finishing test case since Google Play Services are not available");
+            Log.d("onCreate", "Finishing test case since Google Play Services " +
+                    "are not available");
             finish();
         } else {
             Log.d("onCreate","Google Play Services available.");
+        }
+
+        // Changing statusbar color
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.darkergreenish));
         }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        SeekBar seekBar = (SeekBar) findViewById(R.id.maxDistBar);
+        final TextView textView = (TextView) findViewById(R.id.maxDistance);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                // set the text equivalent to the amount of km that we maximally allow
+                textView.setText(i + " Km");
+                // set the proximity radius used in the API equivalent to that amount of KM in M
+                PROXIMITY_RADIUS = i*1000;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // required empty methods
+                return;
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // required empty methods
+                return;
+            }
+        });
     }
 
     private boolean CheckGooglePlayServices() {
@@ -157,6 +202,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switch(v.getId()) {
             // the search button gets pressed
             case R.id.B_search: {
+                // clear the map
+                mMap.clear();
+                // add the current position marker again
+                mCurrLocationMarker = mMap.addMarker(markerOptionsCurrent);
                 // retrieve the location from the textField
                 EditText tf_location = (EditText) findViewById(R.id.TF_location);
                 // set the location to the retrieved location
@@ -169,6 +218,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 // if the manual location has been filled in
                 if (!location.equals("")) {
+                    Log.d("location", location);
                     // set new geocoder as a Geocoder type
                     Geocoder geocoder = new Geocoder(this);
                     try {
@@ -201,7 +251,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             longitude = locationSearch.getLongitude();
                             // set the latitude of that first location
                             latitude = locationSearch.getLatitude();
-
                             // set the dataTransfer
                             dataTransfer = new Object[2];
                             // we are going to search for the movie_theater places
@@ -220,12 +269,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     "Theaters near: "+location, Toast.LENGTH_SHORT).show();
                         }
                     }
-
                 } else {
+                    Log.d("location", "empty");
                     // repeat the same process as above
                     dataTransfer = new Object[2];
                     String theater = "movie_theater";
-                    String url = getUrl(latitude, longitude, theater);
+                    String url = getUrl(orLatitude, orLongitude, theater);
                     getNearbyPlacesData = new GetNearbyPlacesData();
                     dataTransfer[0] = mMap;
                     dataTransfer[1] = url;
@@ -282,7 +331,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String getUrl(double latitude, double longitude, String nearbyPlace) {
         // retrieve the url for nearby places
         // the initial link
-        StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        StringBuilder googlePlacesUrl = new StringBuilder
+                ("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         // the location of the place
         googlePlacesUrl.append("location=" + latitude + "," + longitude);
         // the max radius of those places
@@ -333,25 +383,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // set the latitude and longitude
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
+        orLatitude = location.getLatitude();
+        orLongitude = location.getLongitude();
 
         // set the latLng using the latitude and longitude of the location
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        originalLatLng = new LatLng(location.getLatitude(), location.getLongitude());
         // set all the marker options
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
+        markerOptions.position(originalLatLng);
         markerOptions.draggable(true);
         markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        // add the marker to the map
-        mOriginalMarker = latLng;
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
-
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker
+                (BitmapDescriptorFactory.HUE_RED));
+        // save it in another variable we need later for comparison
+        mOriginalMarker = originalLatLng;
+        // save the original marker options
+        markerOptionsCurrent = markerOptions;
+        // add the current location marker to the map
+        mCurrLocationMarker = mMap.addMarker(markerOptionsCurrent);
         //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(mOriginalMarker));
+        // add aditional variables so that we actually zoom in to the right position,
+        // without this it would zoom in too fast and go to the wrong spot.
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(originalLatLng, 10);
+        mMap.animateCamera(cameraUpdate);
         // display some text to inform the user
         Toast.makeText(MapsActivity.this,"Your Current Location",
                 Toast.LENGTH_LONG).show();
@@ -367,7 +422,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        // necessary empty method
+        // display some text to inform the user
+        Toast.makeText(MapsActivity.this,"We do not have a working connection." +
+                        " Please check your GPS and internet settings and make sure these are" +
+                        " correct.",
+                Toast.LENGTH_LONG).show();
     }
 
     // set a request code
@@ -441,7 +500,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // clicking on a marker makes it draggable
         marker.setDraggable(true);
         // function to check if it was a double click
-        if (doubleBackToExitPressedOnce) {
+        if (doubleClick) {
             // if it was a double click, open the place in a browser
             // get the title of the place
             String placeName = marker.getTitle();
@@ -454,14 +513,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // start the activity
             startActivity(i);
         } else {
-            this.doubleBackToExitPressedOnce = true;
+            // after one click, set the variable that registers double clicks to true
+            this.doubleClick = true;
             new Handler().postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
-                    doubleBackToExitPressedOnce = false;
+                    doubleClick = false;
                 }
-            }, 4000);
+                // a double click can happen in a time span of 4 seconds
+            }, 1000);
         }
         return false;
     }
