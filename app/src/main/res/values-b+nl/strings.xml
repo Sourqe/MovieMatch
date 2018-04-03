@@ -30,5 +30,6 @@
     <string name="settings">Instellingen</string>
     <string name="title_activity_maps">Map</string>
     <string name="search">Zoeken</string>
-    <string name="navigate">Navigate</string>
+    <string name="navigate">Navigeren</string>
+    <string name="maximum_distance_of_theaters_to_be_searched_for">Maximale afstand om voor te zoeken:</string>
 </resources>

@@ -6,6 +6,7 @@
     <color name="textIcons">#FFFFFF</color>
     <color name="lightmode">#FFFFFF</color>
     <color name="greenish">#009688</color>
+    <color name="darkergreenish">#006d63</color>
     <color name="dividerColor">#BDBDBD</color>
     <color name="secondaryText">#757575</color>
     <color name="lightPrimary">#CFD8DC</color>

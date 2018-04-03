@@ -31,4 +31,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="search">Search</string>
     <string name="navigate">Navigate</string>
+    <string name="maximum_distance_of_theaters_to_be_searched_for">Maximum distance of theaters to be searched for:</string>
+    <string name="_10_km">10 Km</string>
 </resources>
