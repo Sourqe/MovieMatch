@@ -1,11 +1,14 @@
 package nl.tue.moviematch;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -52,6 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int PROXIMITY_RADIUS = 10000; // the max. radius to use when looking for places
     private double latitude, longitude; // the latitude and longitude of a location
     private double end_latitude, end_longitude; // the new latitude and longitude of a location
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,6 +189,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     myAddress.getLongitude());
                             // set the location of the marker to the latLng
                             markerOptions.position(latLng);
+                            // set the title
+                            markerOptions.title(addressList.get(i).getFeatureName());
                             // move the camera to that place
                             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                             // add a marker for that location
@@ -434,6 +440,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
         // clicking on a marker makes it draggable
         marker.setDraggable(true);
+        // function to check if it was a double click
+        if (doubleBackToExitPressedOnce) {
+            // if it was a double click, open the place in a browser
+            // get the title of the place
+            String placeName = marker.getTitle();
+            // create an url which we will navigate to when pressing the marker
+            String url = "http://www.google.com/search?q=" + placeName;
+            // new intent for this action
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            // set the data for the intent
+            i.setData(Uri.parse(url));
+            // start the activity
+            startActivity(i);
+        } else {
+            this.doubleBackToExitPressedOnce = true;
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 4000);
+        }
         return false;
     }
 

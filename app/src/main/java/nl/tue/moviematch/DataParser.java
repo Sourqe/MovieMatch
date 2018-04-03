@@ -33,8 +33,7 @@ class DataParser {
         return googleDirectionsMap;
     }
 
-    private HashMap<String, String> getPlace(JSONObject googlePlaceJson)
-    {
+    private HashMap<String, String> getPlace(JSONObject googlePlaceJson) {
         // create local variables
         HashMap<String, String> googlePlacesMap = new HashMap<>(); // map for the places
         String placeName = "-NA-"; // the place name
