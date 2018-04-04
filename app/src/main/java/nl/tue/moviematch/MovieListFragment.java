@@ -49,6 +49,7 @@ public class MovieListFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue( getContext() );
         Log.d("query", query);
+        String url = "https://api.themoviedb.org/3/search/movie?api_key=" + "73555db489b850892725e21fcd3c26ea" + "&language=en-US&include_adult=false&query=" + query;
 
         JsonObjectRequest request = new JsonObjectRequest( Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -84,6 +85,7 @@ public class MovieListFragment extends Fragment {
     public void findSimilar(int id, int page){
 
         RequestQueue queue = Volley.newRequestQueue( getContext() );
+        String url = "https://api.themoviedb.org/3/movie/" + String.valueOf(id) + "/similar" + "?api_key=" + "73555db489b850892725e21fcd3c26ea" + "&page=" + String.valueOf(page) + "&language=en-US";
         ArrayList<Integer> similarIds = new ArrayList<Integer>();
 
         JsonObjectRequest request = new JsonObjectRequest( Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -121,6 +123,7 @@ public class MovieListFragment extends Fragment {
 
     public void getMovieInfo(int movieId){
         RequestQueue queue = Volley.newRequestQueue( getContext() );
+        String url = "https://api.themoviedb.org/3/movie/" + String.valueOf(movieId) + "?api_key=" + "73555db489b850892725e21fcd3c26ea";
 
         JsonObjectRequest request = new JsonObjectRequest( Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
