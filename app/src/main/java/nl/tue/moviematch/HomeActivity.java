@@ -20,14 +20,28 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.activity_home);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
         fragmentTransaction.add(R.id.movieSearchFragmentContainer, movieSearchFragment);
         fragmentTransaction.commit();
-=======
->>>>>>> home-activity
+
+        // Check that the activity is using the layout version with
+        // the fragment_container FrameLayout
+        if (findViewById(R.id.movieSearchFragmentContainer) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+            MovieSearchFragment msFragment = new MovieSearchFragment();
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.movieSearchFragmentContainer, msFragment).commit();
+        }
     }
 }

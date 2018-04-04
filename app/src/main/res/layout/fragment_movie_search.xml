@@ -24,6 +24,7 @@
 
         <EditText
             android:id="@+id/search_for_movie"
+            style="@android:style/Widget.Material.EditText"
             android:layout_width="324dp"
             android:layout_height="49dp"
             android:ems="10"
@@ -34,13 +35,12 @@
 
         <Button
             android:id="@+id/search_movie"
+            style="@android:style/Widget.Material.Button.Colored"
             android:layout_width="324dp"
             android:layout_height="46dp"
             android:layout_marginTop="16dp"
-<<<<<<< HEAD
-            android:text="Search for similar movies!"
-=======
->>>>>>> home-activity
+            android:background="@color/colorPrimary"
+            android:text="@string/search_for_similar_movies"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
