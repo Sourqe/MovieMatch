@@ -1,11 +1,16 @@
 package nl.tue.moviematch;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -13,10 +18,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -66,59 +73,115 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         // Set the content of the activity
         setContentView(R.layout.activity_maps);
-        // Check location premission if the android os version is high enough
-
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkLocationPermission();
-        }
-
-        //Check if Google Play Services Available or not
-        if (!CheckGooglePlayServices()) {
-            Log.d("onCreate", "Finishing test case since Google Play Services are not available");
-            finish();
-        } else {
-            Log.d("onCreate","Google Play Services available.");
-        }
-
-        // Changing statusbar color
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.darkergreenish));
-        }
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
         // Set the seekbar from the layout
         SeekBar seekBar = (SeekBar) findViewById(R.id.maxDistBar);
         // Set the textView from the layout, going to be used for the max distance
         final TextView textView = (TextView) findViewById(R.id.maxDistance);
+        Button search = (Button) findViewById(R.id.B_search);
+        Button navigate = (Button) findViewById(R.id.B_navigate);
 
-        // Listener for the seekbar, registers all movement seekbar related
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                // set the text equivalent to the amount of km that we maximally allow
-                textView.setText(i + " Km");
-                // set the proximity radius used in the API equivalent to that amount of KM in M
-                PROXIMITY_RADIUS = i*1000;
-            }
+        // Check if we have a functioning network available
+        if (isNetworkAvailable() == false) {
+            Toast.makeText(MapsActivity.this, "No network available!",
+                    Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // required empty methods
-                return;
-            }
+            // disable the buttons so that they cannot be pressed anymore
+            search.setEnabled(false);
+            navigate.setEnabled(false);
+        } else { // if we do have a network
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // required empty methods
-                return;
+            // Check if we have access to the GPS
+            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                // disable the buttons so that they cannot be pressed anymore
+                search.setEnabled(false);
+                navigate.setEnabled(false);
+                // invoke method that displays error
+                showGPSDisabledAlertToUser();
+            } else { // If we do have access to the GPS
+                // Check location premission if the android os version is high enough
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    checkLocationPermission();
+                }
+
+                //Check if Google Play Services Available or not
+                if (!CheckGooglePlayServices()) {
+                    Log.d("onCreate", "Finishing test case since Google Play Services " +
+                            "are not available");
+                    finish();
+                } else {
+                    Log.d("onCreate", "Google Play Services available.");
+                }
+
+                // Changing statusbar color
+                if (android.os.Build.VERSION.SDK_INT >= 21) {
+                    Window window = this.getWindow();
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    window.setStatusBarColor(this.getResources().getColor(R.color.darkergreenish));
+                }
+
+                // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+                SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.map);
+                mapFragment.getMapAsync(this);
+
+                // Listener for the seekbar, registers all movement seekbar related
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        // set the text equivalent to the amount of km that we maximally allow
+                        textView.setText(i + " Km");
+                        // set the proximity radius used in the API equivalent to that amount of KM in M
+                        PROXIMITY_RADIUS = i * 1000;
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                        // required empty methods
+                        return;
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        // required empty methods
+                        return;
+                    }
+                });
             }
-        });
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        // check if network is available
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+    }
+
+    private void showGPSDisabledAlertToUser(){
+        // show the user that their GPS is disabled with a dialog interface
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("GPS is disabled in your device. " +
+                "Would you like to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Go to your Settings Page To Enable GPS",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                Intent callGPSSettingIntent = new Intent(
+                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
     }
 
     private boolean CheckGooglePlayServices() {
@@ -210,6 +273,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+                    // if no places found, display a message for the usesr, so they know
+                    if (addressList.size() == 0) {
+                        Log.d("places", "no places found");
+                        Toast.makeText(MapsActivity.this, "No results found. " +
+                                    "Try again searching again for another place.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
                     // if we have found nearby places
                     if (addressList != null) {
                         // for each place in the list
