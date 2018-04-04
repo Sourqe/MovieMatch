@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -106,6 +109,18 @@ public class MovieSearchFragment extends Fragment {
                 mCallback.passData(combined);
             }
         });
+
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
+            betterSpinnerGenre.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            betterSpinnerGenre.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            betterSpinnerYear.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            betterSpinnerYear.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            betterSpinnerLength.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            betterSpinnerLength.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            betterSpinnerRating.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            betterSpinnerRating.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+
+        }
 
         // Return the view
         return v;
