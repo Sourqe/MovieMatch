@@ -33,4 +33,5 @@
     <string name="navigate">Navigate</string>
     <string name="maximum_distance_of_theaters_to_be_searched_for">Maximum distance of theaters to be searched for:</string>
     <string name="_10_km">10 Km</string>
+    <string name="hello_user_welcome_to_moviematch">Hello, welcome to MovieMatch!</string>
 </resources>
