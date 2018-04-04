@@ -82,9 +82,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Check if we have a functioning network available
         if (isNetworkAvailable() == false) {
-            Toast.makeText(MapsActivity.this, "No network available!",
+            Toast.makeText(MapsActivity.this, "No network found! Please make sure " +
+                            "you are connect to a network before using this function of the app.",
                     Toast.LENGTH_SHORT).show();
-
             // disable the buttons so that they cannot be pressed anymore
             search.setEnabled(false);
             navigate.setEnabled(false);
