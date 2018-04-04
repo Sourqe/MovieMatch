@@ -45,6 +45,7 @@ public class MovieListFragment extends Fragment {
         // Required empty public constructor
     }
 
+<<<<<<< HEAD
     public void findMovieId( String query ){
 
         RequestQueue queue = Volley.newRequestQueue( getContext() );
@@ -250,6 +251,8 @@ public class MovieListFragment extends Fragment {
 
 
 
+=======
+>>>>>>> home-activity
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

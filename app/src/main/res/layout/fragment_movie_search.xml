@@ -37,7 +37,10 @@
             android:layout_width="324dp"
             android:layout_height="46dp"
             android:layout_marginTop="16dp"
+<<<<<<< HEAD
             android:text="Search for similar movies!"
+=======
+>>>>>>> home-activity
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"

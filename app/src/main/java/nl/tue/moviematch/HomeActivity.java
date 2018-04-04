@@ -20,11 +20,14 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_home);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
         fragmentTransaction.add(R.id.movieSearchFragmentContainer, movieSearchFragment);
         fragmentTransaction.commit();
+=======
+>>>>>>> home-activity
     }
 }
