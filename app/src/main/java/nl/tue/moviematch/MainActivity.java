@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_help:
                 Intent s = new Intent(MainActivity.this, HelpActivity.class);
                 startActivity(s);
+                break;
             case R.id.nav_about:
                 Intent t = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(t);

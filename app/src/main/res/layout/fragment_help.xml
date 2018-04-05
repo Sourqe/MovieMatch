@@ -12,10 +12,10 @@
 
         <TextView
             android:id="@+id/helpHeader"
-            android:layout_width="371dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
             android:text="@string/helpHeader"
             android:textAlignment="center"
@@ -27,10 +27,10 @@
 
         <TextView
             android:id="@+id/faq1_q"
-            android:layout_width="360dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/faq1_q"
             android:textSize="18sp"
@@ -40,10 +40,10 @@
 
         <TextView
             android:id="@+id/faq1_a"
-            android:layout_width="360dp"
+            android:layout_width="0dp"
             android:layout_height="23dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/faq1_a"
             android:textSize="16sp"
@@ -54,10 +54,10 @@
 
         <TextView
             android:id="@+id/faq2_q"
-            android:layout_width="360dp"
+            android:layout_width="0dp"
             android:layout_height="52dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="@string/faq2_q"
             android:textSize="18sp"
@@ -68,10 +68,10 @@
 
         <TextView
             android:id="@+id/faq2_a"
-            android:layout_width="360dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/faq2_a"
             android:textSize="16sp"
@@ -82,10 +82,10 @@
 
         <TextView
             android:id="@+id/faq3_q"
-            android:layout_width="360dp"
+            android:layout_width="0dp"
             android:layout_height="28dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:text="@string/faq3_q"
             android:textSize="18sp"
@@ -96,10 +96,10 @@
 
         <TextView
             android:id="@+id/faq3_a"
-            android:layout_width="360dp"
+            android:layout_width="0dp"
             android:layout_height="43dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/faq3_a"
             android:textSize="16sp"
@@ -110,10 +110,10 @@
 
         <TextView
             android:id="@+id/moreQuestions"
-            android:layout_width="362dp"
+            android:layout_width="0dp"
             android:layout_height="90dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="132dp"
             android:text="@string/moreQuestions"
             android:textSize="16sp"

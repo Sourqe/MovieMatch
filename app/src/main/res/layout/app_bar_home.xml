@@ -14,16 +14,13 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" />
+            android:layout_height="?attr/actionBarSize" />
 
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/colorControlActivated"
-        app:subtitleTextColor="@color/lightmode"
-        app:titleTextColor="@color/lightmode" />
+        android:background="?android:attr/colorControlActivated"/>
 
 </android.support.design.widget.CoordinatorLayout>
