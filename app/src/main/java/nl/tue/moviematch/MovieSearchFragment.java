@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.support.v4.app.FragmentManager;
@@ -79,6 +81,18 @@ public class MovieSearchFragment extends Fragment {
         adapterRating.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         betterSpinnerRating.setAdapter(adapterRating);
 
+        //change spinner colour in night mode to white
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
+            betterSpinnerGenre.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+            betterSpinnerGenre.setTextColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+            betterSpinnerYear.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+            betterSpinnerYear.setTextColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+            betterSpinnerLength.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+            betterSpinnerLength.setTextColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+            betterSpinnerRating.setBaseColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+            betterSpinnerRating.setTextColor(ResourcesCompat.getColor(getResources(), R.color.lightmode, null));
+
+        }
         // Set the layout components in the code
         searchField = (EditText) v.findViewById( R.id.search_for_movie );
         button = (Button) v.findViewById(R.id.search_movie);
