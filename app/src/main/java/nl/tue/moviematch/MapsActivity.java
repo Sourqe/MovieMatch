@@ -14,6 +14,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -82,9 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Check if we have a functioning network available
         if (isNetworkAvailable() == false) {
-            Toast.makeText(MapsActivity.this, "No network found! Please make sure " +
-                            "you are connect to a network before using this function of the app.",
-                    Toast.LENGTH_SHORT).show();
+            showNetworkDisabledAlertToUser();
             // disable the buttons so that they cannot be pressed anymore
             search.setEnabled(false);
             navigate.setEnabled(false);
@@ -160,13 +159,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
 
-    private void showGPSDisabledAlertToUser(){
+    private void showNetworkDisabledAlertToUser() {
+        // show the user that their GPS is disabled with a dialog interface
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("No network has been found on your device. Would you like " +
+                "to search for a network?")
+                .setCancelable(false)
+                .setPositiveButton("Go to your Settings Page to search for a network",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                Intent callGPSSettingIntent = new Intent(
+                                        Settings.ACTION_WIFI_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+
+    private void showGPSDisabledAlertToUser() {
         // show the user that their GPS is disabled with a dialog interface
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("GPS is disabled in your device. " +
                 "Would you like to enable it?")
                 .setCancelable(false)
-                .setPositiveButton("Go to your Settings Page To Enable GPS",
+                .setPositiveButton("Go to your Settings Page to enable GPS",
                         new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int id){
                                 Intent callGPSSettingIntent = new Intent(

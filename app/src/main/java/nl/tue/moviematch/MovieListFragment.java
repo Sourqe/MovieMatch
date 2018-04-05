@@ -1,30 +1,21 @@
 package nl.tue.moviematch;
 
-import nl.tue.moviematch.R;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewDebug;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.sql.Array;
 import java.util.ArrayList;
 
 /**
@@ -56,7 +47,7 @@ public class MovieListFragment extends Fragment {
 
                     @Override
                     public void onResponse( JSONObject response ) {
-                        try{
+                        try {
                             Log.d("Result: ", response.toString() );
                             Log.d("id", response.getJSONArray("results").getJSONObject( 0 ).getString( "id" ) );
                             movieId = Integer.parseInt(response.getJSONArray("results").getJSONObject( 0 ).getString( "id" ) );
@@ -92,17 +83,12 @@ public class MovieListFragment extends Fragment {
 
             @Override
             public void onResponse( JSONObject response ) {
-                try{
-
+                try {
                     JSONArray results = response.getJSONArray("results");
-
                     for( int i = 0; i < results.length(); i++){
-
                         JSONObject movie = results.getJSONObject(i);
                         getMovieInfo( Integer.parseInt(movie.getString("id")) );
-
                     }
-
                 } catch(JSONException e) {
                     Log.e("error", e.getMessage());
                 }
@@ -131,7 +117,6 @@ public class MovieListFragment extends Fragment {
             public void onResponse(JSONObject response) {
 
                 try {
-
                     ArrayList genres = new ArrayList();
                     JSONArray genre_ids = response.getJSONArray("genres");
                     for( int j = 0; j < genre_ids.length(); j++){
