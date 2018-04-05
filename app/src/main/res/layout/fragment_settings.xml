@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="@string/settingsHeader"
             android:textAlignment="center"
             android:textColor="@color/primaryText"
