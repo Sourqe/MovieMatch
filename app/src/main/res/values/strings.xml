@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">MovieMatch</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="about">About</string>
     <string name="settingsHeader">Settings</string>
-    <string name="welcome_message">Hello, welcome to MovieMatch!</string>
     <string name="select_genre">Select Genre</string>
     <string name="select_year_s">Select Year(s)</string>
     <string name="select_length">Select Length</string>
@@ -15,15 +12,15 @@
     <string name="search_theater">Search for theaters</string>
     <string name="movie_search_hint">Leave blank to use current location</string>
     <string name="faq">Frequently Asked Questions</string>
-    <string name="moreQuestions">Is your question not in the list, or would you like to provide us with feedback? Then you can reach us at the e-mail address idont@know.com.</string>
+    <string name="moreQuestions">Is your question not in the list, or would you like to provide us with feedback? Then you can reach us at the e-mail address group22@2is70.com</string>
     <string name="faq3_a">Yes. Visit the \'settings\' page and change the scheme to dark-mode.</string>
-    <string name="faq2_a">No, contact them yourself.</string>
-    <string name="faq3_q">Can I change the colors of the app?</string>
-    <string name="faq2_q">Can I buy tickets for the movie theater with this app?</string>
-    <string name="faq1_a">You cannot. This app is not a streaming service.</string>
-    <string name="faq1_q">How can I watch series/movies using this app?</string>
+    <string name="faq2_a">No, you will have to contact them yourself.</string>
+    <string name="faq3_q">Is it possible to change the colour of the app?</string>
+    <string name="faq2_q">Is it possible to buy tickets for a movie theater with this app?</string>
+    <string name="faq1_a">That is not possible with this app. This app is not a streaming service.</string>
+    <string name="faq1_q">Is it possible to watch series/movies using this app?</string>
     <string name="helpHeader"><u>Help</u></string>
-    <string name="aboutText">This app was developed for the purpose of the DBL App Development course at the Technical University of Eindhoven. It was developed by the members of group 22. For the functioning of this app information is retrieved using the MovieDB API.</string>
+    <string name="aboutText">This app was developed for the purpose of the DBL App Development course at the Technical University of Eindhoven. It was developed by the members of group 22. For the functioning of this app information is retrieved using the MovieDB API, the Google Maps API, and the Google Places API.</string>
     <string name="aboutHeader">About</string>
     <string name="nightMode">Night Mode</string>
     <string name="gps">GPS</string>
@@ -33,5 +30,4 @@
     <string name="navigate">Navigate</string>
     <string name="maximum_distance_of_theaters_to_be_searched_for">Maximum distance of theaters to be searched for:</string>
     <string name="_10_km">10 Km</string>
-    <string name="hello_user_welcome_to_moviematch">Hello, welcome to MovieMatch!</string>
 </resources>

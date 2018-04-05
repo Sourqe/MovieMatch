@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">MovieMatch</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="about">Over</string>
     <string name="settingsHeader">Instellingen</string>
     <string name="select_genre">Kies Genre</string>
@@ -31,5 +29,4 @@
     <string name="search">Zoeken</string>
     <string name="navigate">Navigeren</string>
     <string name="maximum_distance_of_theaters_to_be_searched_for">Maximale afstand om voor te zoeken:</string>
-    <string name="hello_user_welcome_to_moviematch">Hallo, welkom bij MovieMatch!</string>
 </resources>

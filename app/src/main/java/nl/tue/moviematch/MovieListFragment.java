@@ -36,8 +36,7 @@ public class MovieListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public void findMovieId( String query ){
-
+    public void findMovieId(String query) {
         RequestQueue queue = Volley.newRequestQueue( getContext() );
         Log.d("query", query);
         String url = "https://api.themoviedb.org/3/search/movie?api_key=" + "73555db489b850892725e21fcd3c26ea" + "&language=en-US&include_adult=false&query=" + query;
@@ -68,12 +67,10 @@ public class MovieListFragment extends Fragment {
                     }
                 }
         );
-
         queue.add(request);
-
     }
 
-    public void findSimilar(int id, int page){
+    public void findSimilar(int id, int page) {
 
         RequestQueue queue = Volley.newRequestQueue( getContext() );
         String url = "https://api.themoviedb.org/3/movie/" + String.valueOf(id) + "/similar" + "?api_key=" + "73555db489b850892725e21fcd3c26ea" + "&page=" + String.valueOf(page) + "&language=en-US";
@@ -82,7 +79,7 @@ public class MovieListFragment extends Fragment {
         JsonObjectRequest request = new JsonObjectRequest( Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
-            public void onResponse( JSONObject response ) {
+            public void onResponse(JSONObject response) {
                 try {
                     JSONArray results = response.getJSONArray("results");
                     for( int i = 0; i < results.length(); i++){
@@ -102,13 +99,11 @@ public class MovieListFragment extends Fragment {
                 }
 
         );
-
         queue.add(request);
-
     }
 
-    public void getMovieInfo(int movieId){
-        RequestQueue queue = Volley.newRequestQueue( getContext() );
+    public void getMovieInfo(int movieId) {
+        RequestQueue queue = Volley.newRequestQueue( getContext());
         String url = "https://api.themoviedb.org/3/movie/" + String.valueOf(movieId) + "?api_key=" + "73555db489b850892725e21fcd3c26ea";
 
         JsonObjectRequest request = new JsonObjectRequest( Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -127,7 +122,7 @@ public class MovieListFragment extends Fragment {
                     String length = response.getString("runtime");
                     String year = response.getString("release_date").substring(0,3);
 
-                    if( checkFilter( genres, year, length, rating) ) {
+                    if (checkFilter(genres, year, length, rating) ) {
                         similarMovieIds.add(Integer.parseInt(response.getString("id")) );
                         Log.d("movieIds", similarMovieIds.toString());
 
@@ -144,7 +139,6 @@ public class MovieListFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
         },
@@ -158,11 +152,11 @@ public class MovieListFragment extends Fragment {
         queue.add(request);
     }
 
-    public boolean checkFilter( ArrayList genres, String year, String length, String rating){
-        Log.d("genres", genres.toString() );
+    public boolean checkFilter(ArrayList genres, String year, String length, String rating){
+        Log.d("genres", genres.toString());
 
         //Check genreFilter
-        if( this.genreFilter != "ALL" ){
+        if (this.genreFilter != "ALL" ) {
             int reqGenreId = 0;
 
             switch (this.genreFilter) {
@@ -183,7 +177,7 @@ public class MovieListFragment extends Fragment {
                     break;
             }
 
-            for( int j = 0; j < genres.size(); j++){
+            for (int j = 0; j < genres.size(); j++) {
                 if( genres.contains(reqGenreId)){
                     break;
                 }
@@ -192,14 +186,14 @@ public class MovieListFragment extends Fragment {
         }
 
         //Check yearFilter
-        if( this.yearFilter != "ALL" ){
+        if (this.yearFilter != "ALL") {
             if( !year.substring(0,2).equals( this.yearFilter.substring(0,2) ) ){
                 return false;
             }
         }
 
         //Check lengthFilter
-        if( this.lengthFilter != "ALL" ){
+        if (this.lengthFilter != "ALL") {
             switch (this.lengthFilter) {
                 case "< 60 min":
                     if( Integer.parseInt(length) >= 60 ){
@@ -225,7 +219,7 @@ public class MovieListFragment extends Fragment {
         }
 
         //Check ratingFilter
-        if( !this.ratingFilter.equals("ALL") ){
+        if (!this.ratingFilter.equals("ALL")) {
             if( Integer.parseInt(this.ratingFilter) >= Integer.parseInt(rating.substring(0,1)) ){
                 return false;
             }
@@ -238,10 +232,11 @@ public class MovieListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_movie_list, container, false);
 
-        TextView list = v.findViewById( R.id.movieList);
+        TextView list = v.findViewById(R.id.movieList);
         list.clearComposingText();
 
         String query = getArguments().getString("query");
+
         genreFilter = getArguments().getString("genreFilter");
         yearFilter = getArguments().getString("yearFilter");
         lengthFilter = getArguments().getString("lengthFilter");
