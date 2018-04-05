@@ -87,8 +87,9 @@ public class MovieListFragment extends Fragment {
                     JSONArray results = response.getJSONArray("results");
                     for( int i = 0; i < results.length(); i++){
                         JSONObject movie = results.getJSONObject(i);
-                        getMovieInfo( Integer.parseInt(movie.getString("id")) );
+                        getMovieInfo( Integer.parseInt(movie.getString("id")), i == results.length()-1 );
                     }
+
                 } catch(JSONException e) {
                     Log.e("error", e.getMessage());
                 }
@@ -105,9 +106,10 @@ public class MovieListFragment extends Fragment {
 
         queue.add(request);
 
+
     }
 
-    public void getMovieInfo(int movieId){
+    public void getMovieInfo(int movieId, final boolean lastNumber){
         RequestQueue queue = Volley.newRequestQueue( getContext() );
         String url = "https://api.themoviedb.org/3/movie/" + String.valueOf(movieId) + "?api_key=" + "73555db489b850892725e21fcd3c26ea";
 
@@ -120,26 +122,33 @@ public class MovieListFragment extends Fragment {
                     ArrayList genres = new ArrayList();
                     JSONArray genre_ids = response.getJSONArray("genres");
                     for( int j = 0; j < genre_ids.length(); j++){
-                        genres.add( genre_ids.getJSONObject(j) );
+                        genres.add( genre_ids.getJSONObject(j).get("id") );
                     }
 
                     String rating = response.getString("vote_average");
                     String length = response.getString("runtime");
                     String year = response.getString("release_date").substring(0,3);
 
+                    TextView list = getView().findViewById( R.id.movieList);
+
                     if( checkFilter( genres, year, length, rating) ) {
                         similarMovieIds.add(Integer.parseInt(response.getString("id")) );
                         Log.d("movieIds", similarMovieIds.toString());
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString( "backdropPath", response.get("backdrop_path").toString() );
-                        bundle.putString( "id", response.get("id").toString() );
-                        bundle.putString( "title", response.get("original_title").toString() );
+                        //Bundle bundle = new Bundle();
+                        //bundle.putString( "backdropPath", response.get("backdrop_path").toString() );
+                        //bundle.putString( "id", response.get("id").toString() );
+                        //bundle.putString( "title", response.get("original_title").toString() );
                         //TODO call movieDataFragments
 
-                        TextView list = getView().findViewById( R.id.movieList);
+
                         list.append( response.get("original_title").toString() + "\n" );
+                    } else if ( lastNumber ){
+                        if(list.getText().equals("")){
+                            list.append( "No similar movie found");
+                        }
                     }
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -162,8 +171,10 @@ public class MovieListFragment extends Fragment {
         Log.d("genres", genres.toString() );
 
         //Check genreFilter
-        if( this.genreFilter != "ALL" ){
+        if( !this.genreFilter.equals("ALL") ){
+            Log.d("genrefilter setting", this.genreFilter);
             int reqGenreId = 0;
+
 
             switch (this.genreFilter) {
                 case "HORROR": //id 27
@@ -183,41 +194,44 @@ public class MovieListFragment extends Fragment {
                     break;
             }
 
-            for( int j = 0; j < genres.size(); j++){
-                if( genres.contains(reqGenreId)){
-                    break;
-                }
-            }
-            return false;
-        }
-
-        //Check yearFilter
-        if( this.yearFilter != "ALL" ){
-            if( !year.substring(0,2).equals( this.yearFilter.substring(0,2) ) ){
+            if( !genres.contains( reqGenreId ) ){
                 return false;
             }
         }
 
+        //Check yearFilter
+        if( !this.yearFilter.equals("ALL") ){
+            if( !year.substring(0,2).equals( this.yearFilter.substring(0,2) ) ){
+                Log.d("filter","year does not match");
+                return false;
+            }
+
+        }
+
         //Check lengthFilter
-        if( this.lengthFilter != "ALL" ){
+        if( !this.lengthFilter.equals("ALL") ){
             switch (this.lengthFilter) {
                 case "< 60 min":
                     if( Integer.parseInt(length) >= 60 ){
+                        Log.d("filter","length does not match");
                         return false;
                     }
                     break;
                 case "< 120 min":
                     if( Integer.parseInt(length) >= 120 ){
+                        Log.d("filter","length does not match");
                         return false;
                     }
                     break;
                 case "< 180 min":
                     if ( Integer.parseInt(length) >= 180 ){
+                        Log.d("filter","length does not match");
                         return false;
                     }
                     break;
                 case "> 180 min":
                     if( Integer.parseInt(length) <= 180 ){
+                        Log.d("filter","length does not match");
                         return false;
                     }
                     break;
@@ -227,6 +241,7 @@ public class MovieListFragment extends Fragment {
         //Check ratingFilter
         if( !this.ratingFilter.equals("ALL") ){
             if( Integer.parseInt(this.ratingFilter) >= Integer.parseInt(rating.substring(0,1)) ){
+                Log.d("filter","rating does not match");
                 return false;
             }
         }

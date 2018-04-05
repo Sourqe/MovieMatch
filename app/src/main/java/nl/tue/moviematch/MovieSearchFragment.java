@@ -23,6 +23,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -159,6 +161,34 @@ public class MovieSearchFragment extends Fragment {
                 }
             }
         });
+
+        class MyOnItemSelectedListener implements OnItemSelectedListener {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("spinner", "spinner changed");
+                button.performClick();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView){
+            }
+        }
+
+        betterSpinnerGenre.setOnItemSelectedListener( new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("spinner", "spinner changed");
+                button.performClick();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        betterSpinnerYear.setOnItemSelectedListener( new MyOnItemSelectedListener() );
+        betterSpinnerRating.setOnItemSelectedListener( new MyOnItemSelectedListener() );
+        betterSpinnerLength.setOnItemSelectedListener( new MyOnItemSelectedListener() );
 
         // Return the view
         return v;
