@@ -152,15 +152,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private boolean isNetworkAvailable() {
-        // check if network is available
+        // Check if network is available
+        // Initiate connectivityManager
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        // Get the current active network info
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        // Return if we have a network available
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
 
+    private void showGPSDisabledAlertToUser() {
+        // Show the user that their GPS is disabled with a dialog interface
+        // Initiate the alerDialogBuilder in this activity
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        // Set the message for the dialog box
+        alertDialogBuilder.setMessage("GPS is disabled in your device. " +
+                "Would you like to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Go to your Settings Page to enable GPS",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                Intent callGPSSettingIntent = new Intent(
+                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+                            }
+                        });
+        // Set the cancel button
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        // Create the box
+        AlertDialog alert = alertDialogBuilder.create();
+        // Show the dialog box
+        alert.show();
+    }
+
     private void showNetworkDisabledAlertToUser() {
-        // show the user that their GPS is disabled with a dialog interface
+        // Show the user that their GPS is disabled with a dialog interface
+        // Sort of like the method above, but now with network rather than GPS
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("No network has been found on your device. Would you like " +
                 "to search for a network?")
@@ -170,30 +203,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             public void onClick(DialogInterface dialog, int id){
                                 Intent callGPSSettingIntent = new Intent(
                                         Settings.ACTION_WIFI_SETTINGS);
-                                startActivity(callGPSSettingIntent);
-                            }
-                        });
-        alertDialogBuilder.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
-    }
-
-    private void showGPSDisabledAlertToUser() {
-        // show the user that their GPS is disabled with a dialog interface
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("GPS is disabled in your device. " +
-                "Would you like to enable it?")
-                .setCancelable(false)
-                .setPositiveButton("Go to your Settings Page to enable GPS",
-                        new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int id){
-                                Intent callGPSSettingIntent = new Intent(
-                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                                 startActivity(callGPSSettingIntent);
                             }
                         });
@@ -272,10 +281,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switch(v.getId()) {
             // the search button gets pressed
             case R.id.B_search: {
-                // clear the map
                 mMap.clear();
-                // add the current position marker again
                 mCurrLocationMarker = mMap.addMarker(markerOptionsCurrent);
+
                 // retrieve the location from the textField
                 EditText tf_location = (EditText) findViewById(R.id.TF_location);
                 // set the location to the retrieved location
@@ -316,15 +324,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             markerOptions.position(latLng);
                             // set the title of that place
                             markerOptions.title(addressList.get(i).getFeatureName());
+
                             // move the camera to that place
                             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                             // add a marker for that location
                             mMap.addMarker(markerOptions);
+
                             // get the first location
                             Address locationSearch = addressList.get(0);
                             // set the longitude and latitude of that place
                             newLongitude = locationSearch.getLongitude();
                             newLatitude = locationSearch.getLatitude();
+
                             // set the dataTransfer
                             dataTransfer = new Object[2];
                             String theater = "movie_theater";

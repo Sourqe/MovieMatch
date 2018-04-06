@@ -14,6 +14,8 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.view.LayoutInflater;
 import android.support.v4.app.FragmentManager;
 import android.support.constraint.ConstraintLayout;
@@ -160,13 +162,45 @@ public class MovieSearchFragment extends Fragment {
             }
         });
 
+        class MyOnItemSelectedListener implements OnItemSelectedListener {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("spinner", "spinner changed");
+                button.performClick();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // required empty method
+            }
+        }
+
+        betterSpinnerGenre.setOnItemSelectedListener( new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("spinner", "spinner changed");
+                button.performClick();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // required empty method
+            }
+        });
+
+        betterSpinnerYear.setOnItemSelectedListener(new MyOnItemSelectedListener());
+        betterSpinnerRating.setOnItemSelectedListener(new MyOnItemSelectedListener());
+        betterSpinnerLength.setOnItemSelectedListener(new MyOnItemSelectedListener());
         // Return the view
         return v;
     }
 
+
     private void showNetworkDisabledAlertToUser() {
-        // show the user that their GPS is disabled with a dialog interface
+        // Show the user that their GPS is disabled with a dialog interface
+        // Initiate alertDialog builder in this current activity
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        // Set the message for the dialog box
         alertDialogBuilder.setMessage("No network has been found on your device. Would you like " +
                 "to search for a network?")
                 .setCancelable(false)
@@ -178,22 +212,28 @@ public class MovieSearchFragment extends Fragment {
                                 startActivity(callGPSSettingIntent);
                             }
                         });
+        // Set a cancel button
         alertDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.cancel();
                     }
                 });
+        // Create the dialog box
         AlertDialog alert = alertDialogBuilder.create();
+        // Show the dialog box
         alert.show();
     }
 
     private boolean isNetworkAvailable() {
-        // check if network is available
+        // Check if network is available
+        // Initiate connectivityManager
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getActivity().
                 getSystemService(Context.CONNECTIVITY_SERVICE);
+        // Initiate network info and get the active network info
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        // Return if we have a network
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
 }
